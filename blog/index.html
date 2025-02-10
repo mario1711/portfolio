@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTB Write-Ups</title>
+    <link rel="stylesheet" href="blog.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  </head>
+
+  <body>
+    <!-- Navbar Dinámico -->
+    <nav id="writeup-menu" aria-label="Menú de Write-Ups"></nav>
+
+    <!-- Contenedor Principal -->
+    <main class="container">
+      <section id="writeups">
+        <h1>Hack The Box Write-Ups</h1>
+        <div class="writeup-container">
+          <article id="writeup-content" aria-live="polite">
+            <p>Selecciona una máquina del menú para ver su write-up.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // Lista de máquinas y archivos Markdown
+      const writeups = [
+        { name: "Squashed", file: "writeups/squashed/squashed.md" },
+      ];
+
+      // Configura marked para usar highlight.js
+      marked.setOptions({
+        highlight: function (code, language) {
+          const validLanguage = hljs.getLanguage(language)
+            ? language
+            : "plaintext";
+          return hljs.highlight(code, { language: validLanguage }).value;
+        },
+      });
+
+      // Generar el navbar dinámicamente
+      function generateNavbar() {
+        let menu = document.getElementById("writeup-menu");
+        writeups.forEach((writeup, index) => {
+          let link = document.createElement("a");
+          link.href = `#writeups`;
+          link.textContent = writeup.name;
+          link.setAttribute("role", "button");
+          link.setAttribute("aria-label", `Ver write-up de ${writeup.name}`);
+          link.onclick = () => loadWriteup(writeup.file);
+          menu.appendChild(link);
+
+          // Cargar el primer write-up automáticamente
+          if (index === 0) {
+            loadWriteup(writeup.file);
+          }
+        });
+      }
+
+      // Cargar Markdown y convertirlo en HTML
+      function loadWriteup(file) {
+        fetch(file)
+          .then((response) => response.text())
+          .then((markdown) => {
+            document.getElementById("writeup-content").innerHTML =
+              marked.parse(markdown);
+            // Aplicar resaltado de sintaxis a todos los bloques de código
+            document.querySelectorAll("pre code").forEach((block) => {
+              hljs.highlightBlock(block);
+            });
+          })
+          .catch((error) =>
+            console.error("Error cargando el write-up:", error)
+          );
+      }
+
+      // Generar el menú al cargar la página
+      document.addEventListener("DOMContentLoaded", generateNavbar);
+    </script>
+  </body>
+</html>

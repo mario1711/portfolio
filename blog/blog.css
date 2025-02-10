@@ -1,0 +1,169 @@
+/* 🔹 Variables CSS */
+:root {
+    --primary-color: #D96AA7;
+    --background-color: #191919;
+    --navbar-width: 220px;
+    --navbar-background: #000000;
+    --text-color: #fff;
+}
+
+/* Estilos para bloques de código */
+pre {
+    background: #2d2d2d;
+    color: #f8f8f2;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 20px 0;
+}
+
+code {
+    background: #2d2d2d;
+    color: #f8f8f2;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+}
+
+/* 🔹 Reset General */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+/* 🔹 Navbar */
+#writeup-menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: var(--navbar-width);
+    height: 100vh;
+    background: var(--navbar-background);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+#writeup-menu a {
+    font-size: 1rem;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    display: block;
+    transition: background 0.3s;
+}
+
+#writeup-menu a:hover {
+    background: var(--primary-color);
+}
+
+/* 🔹 Contenedor Principal */
+.container {
+    margin-left: calc(var(--navbar-width) + 20px);
+    /* Espacio para el navbar */
+    padding: 20px;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+#writeups {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.writeup-container {
+    max-width: 80vw;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+/* 🔹 Estilos para Imágenes */
+.writeup-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    loading: lazy;
+}
+
+/* 🔹 Responsividad */
+
+/* 🔸 Tablets (Pantallas menores a 1024px) */
+@media (max-width: 1024px) {
+    :root {
+        --navbar-width: 180px;
+    }
+
+    .container {
+        margin-left: calc(var(--navbar-width) + 20px);
+    }
+
+    #writeup-menu a {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+}
+
+/* 🔸 Móviles (Pantallas menores a 768px) */
+@media (max-width: 768px) {
+    #writeup-menu {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        flex-direction: row;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 10px;
+    }
+
+    #writeup-menu a {
+        display: inline-block;
+        padding: 10px 15px;
+    }
+
+    .container {
+        margin-left: 0;
+        padding-top: 60px;
+    }
+
+    .writeup-container {
+        max-width: 90vw;
+    }
+}
+
+/* 🔸 Dispositivos Pequeños (Pantallas menores a 480px) */
+@media (max-width: 480px) {
+    #writeup-menu {
+        padding: 5px;
+    }
+
+    #writeup-menu a {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .writeup-container {
+        max-width: 95vw;
+    }
+}

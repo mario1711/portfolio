@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Web</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+
+  <body>
+    <div class="overlay"></div>
+
+    
+    <nav class="navbar">
+      <div class="navbar-container container">
+        <input type="checkbox" id="menu-toggle" />
+        <div class="hamburger-lines">
+          <span class="line line1"></span>
+          <span class="line line2"></span>
+          <span class="line line3"></span>
+        </div>
+        <ul class="menu-items">
+          <li><a href="/portfolio">Home</a></li>
+          <li><a href="#inicio">About</a></li>
+          <li><a href="blog/">Blog</a></li>
+        </ul>
+        <h1 class="logo">Portfolio</h1>
+      </div>
+    </nav>
+
+    <div class="snap-container">
+      <div class="snap-section content" id="inicio">
+        <h1 class="animated-text" style="--text-length: 12">About me...</h1>
+        <div class="profile-container">
+          <img src="img/me.jpg" alt="Mi Foto" />
+          <div class="text-content">
+            <h1>Mario Hernández</h1>
+            <p>
+              Software engineer and pentester passionate about technology and
+              cybersecurity. Exploring the world of ethical hacking.
+            </p>
+
+            <div class="container-download">
+              <a class="button" href="/portfolio/docs/Currículum.pdf" download>
+                <svg
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  height="40"
+                  width="40"
+                  class="button__icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path fill="none" d="M0 0h24v24H0z" stroke="none"></path>
+                  <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"></path>
+                  <path d="M7 11l5 5l5 -5"></path>
+                  <path d="M12 4l0 12"></path>
+                </svg>
+                <span class="button__text">Download CV</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     
+      <div class="snap-section content" id="experience">
+        <h1 class="animated-text" style="--text-length: 11">Experience</h1>
+        <div class="experience-container">
+          <div class="experience-details">
+            <h2>Softtek - Monterrey, Nuevo León, México</h2>
+            <h3>Software Engineer (2023 - Present)</h3>
+            <p>
+              <strong>Vulnerability Analysis:</strong> Identify and mitigate
+              risks in applications and systems, ensuring compliance with
+              cybersecurity standards.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="snap-section content" id="education">
+        <h1 class="animated-text" style="--text-length: 10">Education</h1>
+        <div class="education-container">
+          <div class="education-details">
+            <h2>Instituto Tecnológico de la Laguna</h2>
+            <h3>Torreón, Coahuila, México</h3>
+            <p><strong>Degree:</strong> Software Engineer</p>
+            <p><strong>Duration:</strong> June 2019 - July 2024</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="snap-section content" id="achievements">
+        <h1 class="animated-text" style="--text-length: 14">Achievements</h1>
+        <div class="achievements-list">
+          <div class="achievement-item">
+            <p>
+              Obtained multiple cybersecurity certifications, including the
+              Google Cybersecurity Certificate.
+            </p>
+          </div>
+          <div class="achievement-item">
+            <p>Competed in a Capture The Flag (CTF) events.</p>
+          </div>
+          <div class="achievement-item">
+            <p>
+              Participated in the International Collegiate Programming Contest
+              (ICPC).
+            </p>
+          </div>
+          <div class="achievement-item">
+            <p>
+              Collaborated in various hackathons, rapidly developing innovative
+              tech solutions.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="snap-section skills-section content" id="skills">
+        <h1 class="animated-text" style="--text-length: 8">Skills</h1>
+        <div class="skills-grid">
+          <div class="skill-item">
+            <img src="img/idea.png" alt="Creativity Icon" />
+            <h3>Creativity</h3>
+          </div>
+          <div class="skill-item">
+            <img src="img/terminal.png" alt="Python and Bash Icon" />
+            <h3>Python & Bash Scripting</h3>
+          </div>
+          <div class="skill-item">
+            <img src="img/logotipo-de-linux.png" alt="Kali Linux Icon" />
+            <h3>Kali Linux</h3>
+          </div>
+          <div class="skill-item">
+            <img src="img/pirateado.png" alt="Communication Icon" />
+            <h3>Software Development and Pentesting</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const sections = document.querySelectorAll(".snap-section");
+        const animatedTexts = document.querySelectorAll(".animated-text");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+              }
+            });
+          },
+          { threshold: 0.6 }
+        );
+
+        sections.forEach((section) => observer.observe(section));
+
+        const textObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("start-animation");
+              }
+            });
+          },
+          { threshold: 1.0 }
+        );
+
+        animatedTexts.forEach((text) => textObserver.observe(text));
+      });
+    </script>
+  </body>
+</html>
